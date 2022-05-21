@@ -6,3 +6,4 @@ const productos = [
     {id: "abc120", nombre: "Placa de Video GX8900 Super Super Super", rating: 5, precio: 714.99, foto: "placa_video.png" },
     {id: "abc126", nombre: "Teclado sencillo pero funcional", rating: 2, precio: 12.20, foto: "teclado.png" },
 ];
+
