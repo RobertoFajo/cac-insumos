@@ -34,21 +34,22 @@ for (let index = 0; index < productos.length; index++) {
 
 
 
+//Esta función la llama el btn
 
-function addInTrolley(){
+function addInTrolley(idx){
     const trolleyText = document.getElementById("trolleyText");
     let cantidad = trolleyText.innerHTML;
     cantidad++;
     trolleyText.innerHTML=cantidad ;
+    console.log(idx);
+    console.log(productos[idx].id);
     
 }
 
 function cardMaker(idx, nombre, precio, foto){
-    return '\n                    <div class="col mb-5">\n                        <div class="card h-100">\n                            \x3C!-- Sale badge-->\n                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Oferta</div>\n                            \x3C!-- Product image-->\n                            <img class="card-img-top" src="assets/productos/'+ foto +'" alt="...">\n                            \x3C!-- Product details-->\n                            <div class="card-body p-4">\n                                <div class="text-center">\n                                    \x3C!-- Product name-->\n                                    <h5 class="fw-bolder">'+ nombre +'</h5>\n                                    \x3C!-- Product reviews-->\n                                    <div id="starConteiner'+ idx +'" class="d-flex justify-content-center small text-warning mb-2">\n                                        </div>\n                                    \x3C!-- Product price-->\n                                    \n                                    $'+ precio +'\n                                </div>\n                            </div>\n                            \x3C!-- Product actions-->\n                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">\n                                <div class="text-center"><button type="button" onclick="addInTrolley()" id="btnAdd'+ idx +'"  class="btn btn-outline-dark mt-auto" href="#" >Añadir al carrito  </button></div>\n                            </div>\n                        </div>\n                    </div>     \n                '
+    return '\n                    <div class="col mb-5">\n                        <div class="card h-100">\n                            \x3C!-- Sale badge-->\n                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Oferta</div>\n                            \x3C!-- Product image-->\n                            <img class="card-img-top" src="assets/productos/'+ foto +'" alt="...">\n                            \x3C!-- Product details-->\n                            <div class="card-body p-4">\n                                <div class="text-center">\n                                    \x3C!-- Product name-->\n                                    <h5 class="fw-bolder">'+ nombre +'</h5>\n                                    \x3C!-- Product reviews-->\n                                    <div id="starConteiner'+ idx +'" class="d-flex justify-content-center small text-warning mb-2">\n                                        </div>\n                                    \x3C!-- Product price-->\n                                    \n                                    $'+ precio +'\n                                </div>\n                            </div>\n                            \x3C!-- Product actions-->\n                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">\n                                <div class="text-center"><button type="button" onclick="addInTrolley('+ idx +' )" id="btnAdd'+ idx +'"  class="btn btn-outline-dark mt-auto" href="#" >Añadir al carrito  </button></div>\n                            </div>\n                        </div>\n                    </div>     \n                '
 }
 
 function starMaker(){
     return '<div class="bi-star-fill"></div>';
 }
-
-btnAdd.onclick = addTrolley;
