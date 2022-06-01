@@ -151,9 +151,14 @@ const pintarFooter = () => {
 
     const btnVaciar = document.getElementById("vaciar-carrito");
     btnVaciar.addEventListener("click", () =>{
+        
+        for (let d = 0;productosEnCarrito.length > d; d++) {
+            productos[productosEnCarrito[d].indx].stock += productosEnCarrito[d].cantidad;
+            console.log(productos[productosEnCarrito[d].indx].nombre);
+            console.log(productos[productosEnCarrito[d].indx].stock);    
+        }
         for (let c = productosEnCarrito.length; c > 0; c--) {
-            productosEnCarrito.pop();
-            
+            productosEnCarrito.pop();      
         }
         trolleyText.innerHTML=0;
         pintarCarrito();
@@ -161,16 +166,19 @@ const pintarFooter = () => {
 }
 
 const btnAccion = e =>{
-    //console.log(e.target)
+    
     if(e.target.classList.contains("btn-info")){
         if(consultaStock(e.target.dataset.id)){
-            productosEnCarrito[e.target.dataset.id].cantidad++;
-            cantidad = trolleyText.innerHTML;
-            cantidad++;
-            productos[e.target.dataset.id].stock++
-            trolleyText.innerHTML=cantidad;
-            console.log(roductos[e.target.dataset.id].stock);
+            for (let i = 0; i < productosEnCarrito.length; i++) {
+                if(productosEnCarrito[i].indx==e.target.dataset.id){
+                    const producto = productosEnCarrito[i];
+                    producto.cantidad++;
+                    console.log(productos[e.target.dataset.id].stock);
+                }
+            
+            }
         }
+        
         
         
         pintarCarrito();
@@ -178,14 +186,20 @@ const btnAccion = e =>{
     }
 
     if(e.target.classList.contains("btn-danger")){
-        productosEnCarrito[e.target.dataset.id].cantidad--;
-        console.log(e.target.dataset.id)
-        cantidad = trolleyText.innerHTML;
-        cantidad--;
-        trolleyText.innerHTML=cantidad;
-        if(productosEnCarrito[e.target.dataset.id].cantidad === 0){
-            productosEnCarrito.splice(e.target.dataset.id,1)
+        for (let i = 0; i < productosEnCarrito.length; i++) {
+            if(productosEnCarrito[i].indx==e.target.dataset.id){
+                const producto = productosEnCarrito[i];
+                producto.cantidad--;
+                productos[e.target.dataset.id].stock++;
+                console.log(productos[e.target.dataset.id].stock);
+            }
+            if(productosEnCarrito[i].cantidad==0){
+                productosEnCarrito.splice(i,1);
+            }
+            
         }
+        
+        
         pintarCarrito();
         
     }
